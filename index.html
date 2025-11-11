@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Владимир Набоков</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat&display=swap');
+
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #a6826f 20%, #5a3825 80%);
+    font-family: 'Montserrat', sans-serif;
+    color: #f5f0e9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  main {
+    background: #3a2614cc; /* полу-прозрачный темно-коричневый */
+    border-radius: 20px;
+    max-width: 900px;
+    padding: 40px 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    position: relative;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 3.4rem;
+    margin-bottom: 12px;
+    color: #efddc7;
+    text-shadow: 2px 2px 5px #4a2d12;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-top: 40px;
+    margin-bottom: 18px;
+    border-bottom: 1.8px solid #c1a26a;
+    padding-bottom: 6px;
+    color: #e9dabb;
+  }
+
+  p, ul {
+    font-size: 1.1rem;
+    line-height: 1.72;
+    color: #f0e7decc;
+    letter-spacing: 0.02em;
+  }
+
+  ul {
+    padding-left: 30px;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  /* Кнопки с легким эффектом бабочки */
+  .btn {
+    display: inline-block;
+    background: #c1a25f;
+    color: #382f23;
+    font-weight: 700;
+    padding: 12px 28px;
+    margin-top: 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Fraunces', serif;
+    text-transform: uppercase;
+    box-shadow: 0 6px 15px rgba(193, 162, 95, 0.4);
+    position: relative;
+    transition: all 0.35s ease;
+    user-select: none;
+  }
+
+  .btn:hover {
+    background: #e5dba5;
+    color: #5a3825;
+    box-shadow: 0 8px 25px rgba(229, 219, 165, 0.75);
+    transform: scale(1.06) rotate(-1deg);
+  }
+
+  /* Элементы декора — бабочки */
+  .butterfly {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Idea_leuconoe_%28butterfly%29.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    filter: drop-shadow(2px 2px 2px #3d2714);
+    animation: flutter 6s infinite alternate ease-in-out;
+  }
+
+  .butterfly1 {
+    top: 15px;
+    right: 40px;
+    animation-delay: 0s;
+  }
+
+  .butterfly2 {
+    bottom: 45px;
+    left: 30px;
+    width: 65px;
+    height: 65px;
+    animation-delay: 3.5s;
+  }
+
+  @keyframes flutter {
+    0% { transform: rotate(0deg) translateY(0); opacity: 0.4; }
+    50% { transform: rotate(15deg) translateY(-15px); opacity: 0.7; }
+    100% { transform: rotate(0deg) translateY(0); opacity: 0.4; }
+  }
+
+  img.author-photo {
+    max-width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+    margin: 30px auto;
+    display: block;
+  }
+
+  a.link-btn {
+    color: #f1e8d9cc;
+    text-decoration: underline;
+  }
+  a.link-btn:hover {
+    color: #cdb462;
+    text-decoration: none;
+  }
+
+  /* Адаптив для мобильных */
+  @media (max-width: 600px) {
+    main {
+      padding: 30px 25px;
+    }
+    h1 {
+      font-size: 2.3rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+    }
+    img.author-photo {
+      max-width: 180px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="butterfly butterfly1" aria-hidden="true"></div>
+  <div class="butterfly butterfly2" aria-hidden="true"></div>
+  <h1>Владимир Набоков</h1>
+  <p><em>Русский и американский писатель, поэт, переводчик и энтомолог</em></p>
+  <img class="author-photo" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Vladimir_Nabokov_1973_crop.jpg" alt="Владимир Набоков" />
+
+  <section>
+    <h2>Краткая биография</h2>
+    <p>Владимир Владимирович Набоков (22 апреля 1899 — 2 июля 1977) — русский и американский писатель, поэт, переводчик и выдающийся энтомолог, специализировавшийся на бабочках (Lepidoptera). Родился в Императорской России, первые произведения писал на русском языке. Позже эмигрировал и получил признание, выбрав язык английский для своих романов. Был профессором русского языка и литературы в Корнеллском университете.</p>
+  </section>
+
+  <section>
+    <h2>Значимые произведения</h2>
+    <ul>
+      <li>«Лолита» (1955) — один из величайших романов XX века</li>
+      <li>«Бледный огонь» (1962)</li>
+      <li>«Другие берега» (1949) — автобиографический роман</li>
+      <li>Рассказы и стихи на русском и английском языках</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Бабочки и энтомология</h2>
+    <p>С ранних лет Набоков интересовался энтомологией. Он внёс значительный вклад в изучение бабочек и даже использовал научные знания в своих литературных произведениях. В одной из своих автобиографий и в некоторых романах фигурируют фантастические бабочки, придуманные самим Набоковым.</p>
+  </section>
+
+  <section>
+    <h2>Кнопки с кликабельными действиями</h2>
+    <button class="btn" onclick="alert('Перейти к чтению «Лолиты»')">Читать Лолиту</button>
+    <button class="btn" onclick="alert('Посетить музей Набокова')">Музей Набокова</button>
+    <button class="btn" onclick="window.open('https://en.wikipedia.org/wiki/Vladimir_Nabokov', '_blank')">Подробнее на Википедии</button>
+  </section>
+</main>
+</body>
+</html>
