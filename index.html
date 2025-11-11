@@ -63,32 +63,6 @@
     margin-bottom: 8px;
   }
 
-  /* Кнопки с легким эффектом бабочки */
-  .btn {
-    display: inline-block;
-    background: #c1a25f;
-    color: #382f23;
-    font-weight: 700;
-    padding: 12px 28px;
-    margin-top: 25px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-family: 'Fraunces', serif;
-    text-transform: uppercase;
-    box-shadow: 0 6px 15px rgba(193, 162, 95, 0.4);
-    position: relative;
-    transition: all 0.35s ease;
-    user-select: none;
-  }
-
-  .btn:hover {
-    background: #e5dba5;
-    color: #5a3825;
-    box-shadow: 0 8px 25px rgba(229, 219, 165, 0.75);
-    transform: scale(1.06) rotate(-1deg);
-  }
-
   /* Элементы декора — бабочки */
   .butterfly {
     position: absolute;
@@ -130,6 +104,24 @@
     display: block;
   }
 
+  img.additional-photo {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 12px;
+    margin: 20px auto 35px auto;
+    display: block;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+  }
+
+  iframe {
+    display: block;
+    margin: 30px auto 40px auto;
+    border-radius: 15px;
+    max-width: 100%;
+    height: 315px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.7);
+  }
+
   a.link-btn {
     color: #f1e8d9cc;
     text-decoration: underline;
@@ -153,6 +145,13 @@
     img.author-photo {
       max-width: 180px;
     }
+    img.additional-photo {
+      max-width: 100%;
+      margin: 15px auto 25px auto;
+    }
+    iframe {
+      height: 240px;
+    }
   }
 </style>
 </head>
@@ -175,20 +174,35 @@
       <li>«Лолита» (1955) — один из величайших романов XX века</li>
       <li>«Бледный огонь» (1962)</li>
       <li>«Другие берега» (1949) — автобиографический роман</li>
-      <li>Рассказы и стихи на русском и английском языках</li>
+      <li>«Пнин» (1957) — роман с элементами комедии и драмы</li>
+      <li>«Бендэр» (1940) — сборник рассказов</li>
+      <li>Поэзия на русском и английском языках</li>
     </ul>
+    <img class="additional-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Lolita_first_US_edition_cover_1955.jpg/440px-Lolita_first_US_edition_cover_1955.jpg" alt="Обложка первого издания Лолиты" />
   </section>
 
   <section>
     <h2>Бабочки и энтомология</h2>
-    <p>С ранних лет Набоков интересовался энтомологией. Он внёс значительный вклад в изучение бабочек и даже использовал научные знания в своих литературных произведениях. В одной из своих автобиографий и в некоторых романах фигурируют фантастические бабочки, придуманные самим Набоковым.</p>
+    <p>Набоков с детства интересовался бабочками, даже занимался научной лепидоптерологией. Его уникальный вклад в науку был отмечен международным сообществом исследователей. Он описал новые виды бабочек и размышлял о миграциях бабочек в научных работах. Бабочки часто становятся символом и метафорой в его литературе.</p>
+    <img class="additional-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lepidoptera_Papilio_Alexanor_01.JPG/440px-Lepidoptera_Papilio_Alexanor_01.JPG" alt="Бабочка Papilio alexanor" />
   </section>
 
   <section>
-    <h2>Кнопки с кликабельными действиями</h2>
-    <button class="btn" onclick="alert('Перейти к чтению «Лолиты»')">Читать Лолиту</button>
-    <button class="btn" onclick="alert('Посетить музей Набокова')">Музей Набокова</button>
-    <button class="btn" onclick="window.open('https://en.wikipedia.org/wiki/Vladimir_Nabokov', '_blank')">Подробнее на Википедии</button>
+    <h2>Мультимедиа</h2>
+    <p>Интервью и обсуждения творчества Набокова показывают глубину его таланта и страсть к науке и литературе:</p>
+    <iframe src="https://www.youtube.com/embed/VsnRqJ6YQ_8" title="Vladimir Nabokov Documentary" allowfullscreen></iframe>
+  </section>
+
+  <section>
+    <h2>Подробнее</h2>
+    <p>Набоков также писал множество эссе и критических статей, переводил произведения великих классиков на английский и русский языки. Его литературное наследие сильно связано с эмиграцией, культурой XX века и экспериментами с формой и структурой повествования.</p>
+    <ul>
+      <li>Автобиографические эссе и дневники</li>
+      <li>Критика и литературные рецензии для различных журналов</li>
+      <li>Переводы Фёдора Достоевского, Гёте и других классиков</li>
+      <li>Неоклассические пьесы и сценарии</li>
+    </ul>
+    <p>Узнать больше можно по ссылке: <a class="link-btn" href="https://en.wikipedia.org/wiki/Vladimir_Nabokov" target="_blank" rel="noopener noreferrer">Википедия - Владимир Набоков</a></p>
   </section>
 </main>
 </body>
