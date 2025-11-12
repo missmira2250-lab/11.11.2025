@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -7,15 +6,94 @@
   <title>Владимир Набоков — лепидоптер и литература</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Стили сохранены без изменений */
+    /* -------------------------  Общее  ------------------------- */
+    :root{
+      --bg:#f7f3ef; /* теплый беж */
+      --accent:#d94f3d; /* теплый терракот */
+      --accent-2:#2b6f5a; /* глубокий изумруд */
+      --muted:#6a6a6a;
+      --card:#fffaf6;
+      --glass: rgba(255,255,255,0.6);
+      --butterfly-1: rgba(217,79,61,0.12);
+      --butterfly-2: rgba(43,111,90,0.10);
+      --shadow: 0 10px 24px rgba(16,18,20,0.08);
+      --radius: 18px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 20%, var(--butterfly-2), transparent 10%),
+                  radial-gradient(900px 400px at 90% 80%, var(--butterfly-1), transparent 12%),
+                  linear-gradient(180deg, #fffdfb 0%, var(--bg) 100%);
+      color:#1a1a1a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:36px;
+      box-sizing:border-box;
+    }
+
+    /* -------------------------  Каркас  ------------------------- */
+    .container{max-width:1100px;margin:0 auto;display:grid;grid-template-columns: 360px 1fr;gap:28px;align-items:start}
+
+    /* -------------------------  Боковая панель  ------------------------- */
+    .sidebar{
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--card));
+      padding:22px;border-radius:20px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+      border:1px solid rgba(16,18,20,0.04);
+    }
+    .portrait{width:100%;height:240px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;box-shadow:inset 0 -40px 80px rgba(0,0,0,0.06)}
+    .meta{margin-top:14px}
+    .meta h1{font-family:'Playfair Display', serif;margin:0;font-size:20px}
+    .meta p{margin:6px 0;color:var(--muted);font-size:13px}
+
+    .btn{display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:600;background:var(--accent);color:#fff;box-shadow:0 8px 18px rgba(217,79,61,0.12);transition:transform .18s ease,box-shadow .18s;}
+    .btn.secondary{background:transparent;color:var(--accent-2);border:1px solid rgba(43,111,90,0.12);box-shadow:none}
+    .btn:active{transform:translateY(2px)}
+
+    .info-list{margin-top:18px;display:grid;gap:10px}
+    .pill{background:var(--glass);padding:10px;border-radius:10px;font-size:13px}
+
+    /* -------------------------  Основной контент  ------------------------- */
+    .main{background:linear-gradient(180deg,rgba(255,255,255,0.85),#fff);padding:26px;border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(16,18,20,0.04)}
+    .lead{display:flex;align-items:flex-start;gap:18px}
+    .lead .headline{font-family:'Playfair Display',serif;font-size:28px;margin:0}
+    .byline{color:var(--muted);margin-top:6px}
+
+    .section{margin-top:20px;padding-top:10px;border-top:1px dashed rgba(16,18,20,0.04)}
+
+    /* -------------------------  Галерея бабочек и svg  ------------------------- */
+    .butterflies{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .butterfly{width:70px;height:70px;border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,0.25),rgba(0,0,0,0.02));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+
+    /* -------------------------  Карточки цитат и снапшоты  ------------------------- */
+    .quote{font-family:'Playfair Display',serif;font-size:16px;margin:14px 0;padding:16px;border-radius:14px;background:linear-gradient(180deg,rgba(251,244,240,0.9),rgba(255,255,255,0.6));border-left:4px solid var(--accent);}
+
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+    .card{padding:14px;border-radius:12px;background:var(--card);box-shadow:0 8px 24px rgba(11,12,13,0.04)}
+
+    /* -------------------------  Кнопки управления  ------------------------- */
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+    /* -------------------------  Модальные и скрытая секция  ------------------------- */
+    .modal{position:fixed;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(7,8,9,0.45);z-index:60;opacity:0;pointer-events:none;transition:opacity .18s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal .panel{width:min(900px,96%);background:#fff;padding:20px;border-radius:14px}
+
+    /* -------------------------  Темы и адаптив  ------------------------- */
+    .theme-dark{--bg:#0f1220;--card:#0b0c10;color:#eaeaea;}
+    .theme-dark body{background:#08070a}
+
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr;}
+      .portrait{height:180px}
+    }
   </style>
 </head>
 <body>
   <div class="container" id="page">
-    <aside class="sidebar">
-      <div class="portrait" role="img" aria-label="Символическая портретная панель">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Vladimir_Nabokov_1940s.jpg" alt="Владимир Набоков в 1940-х" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
-      </div>
+    <aside class="sidebar" aria-labelledby="title-aside">
+      <div class="portrait" role="img" aria-label="Символическая портретная панель">Владимир Набоков</div>
       <div class="meta">
         <h1 id="title-aside">Владимир Набоков (1899–1977)</h1>
         <p>Писатель, поэт, переводчик и исследователь бабочек — уникальное сочетание научной точности и художественного гения.</p>
@@ -35,38 +113,199 @@
       <div style="margin-top:14px;font-size:13px;color:var(--muted)">Тема оформления: <strong>Латиноамериканская роскошь</strong> — тёплые терракоты, глубокие зелёные тона, дорогие текстуры и бабочки как мотив.</div>
 
       <div class="butterflies" aria-hidden="false" style="margin-top:14px">
-        <div class="butterfly">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Morpho_menelaus_male_dos_MHNT.jpg" alt="Morpho menelaus" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+        <!-- стилизованные SVG-бабочки -->
+        <div class="butterfly"> 
+          <svg viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">
+            <g transform="translate(8,4)">
+              <path d="M8 8c6-6 16-6 22 0 0 0-5 10-11 10S8 8 8 8z" fill="#d94f3d" opacity="0.95"></path>
+              <path d="M8 22c6 6 16 6 22 0 0 0-5-10-11-10S8 22 8 22z" fill="#2b6f5a" opacity="0.65"></path>
+            </g>
+          </svg>
         </div>
         <div class="butterfly">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Morpho_didius_MHNT_dos.jpg" alt="Morpho didius" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+          <svg viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">
+            <g transform="translate(6,6)">
+              <ellipse cx="10" cy="12" rx="10" ry="8" fill="#eab89a"></ellipse>
+              <ellipse cx="28" cy="18" rx="12" ry="9" fill="#b14a37"></ellipse>
+            </g>
+          </svg>
         </div>
         <div class="butterfly">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Morpho_peleides_male_dos_MHNT.jpg" alt="Morpho peleides" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+          <svg viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">
+            <circle cx="28" cy="24" r="12" fill="#f0d8c9"></circle>
+            <path d="M14 18c6-6 20-6 26 0" fill="none" stroke="#2b6f5a" stroke-width="2"></path>
+          </svg>
         </div>
       </div>
+
     </aside>
 
     <main class="main" role="main">
-      <section class="section" aria-labelledby="galleryTitle">
-        <h3 id="galleryTitle">Галерея — бабочки и архив</h3>
-        <p>Ниже — стилизованная галерея-эскиз: реальные иллюстрации из открытых источников Wikimedia Commons.</p>
-        <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="lead">
+        <div style="flex:1">
+          <h2 class="headline">Набоков — на стыке романа и коллекции</h2>
+          <div class="byline">Автор, чей литературный почерк — филигранная игра с языком, памятью и взглядом на человеческую страсть.</div>
+        </div>
+        <div style="width:160px;text-align:right">
+          <div style="font-size:12px;color:var(--muted)">Кнопки управления</div>
+          <div class="controls">
+            <button class="btn" id="themeToggle">Тёмная тема</button>
+            <button class="btn secondary" id="copyBtn">Скопировать ссылку</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="section" aria-labelledby="bioTitle">
+        <h3 id="bioTitle">Краткая биография</h3>
+        <p>Владимир В. Набоков — родился в аристократической семье, эмигрировал после революции, жил в Берлине и Париже, а затем в США. Писал преимущественно на русском и английском языках; его литературная карьера сочетала стилистическую роскошь, внимание к деталям и гиперчувствительную память. Как учёный-любитель он занимался лепидоптерологией — частично именно это увлечение повлияло на многие метафоры и структуры его прозы.</p>
+
+        <div class="quote">«Мы — люди, которые, подобно бабочкам, летим туда, где светит искусство...» — образное сравнение и реальный интерес к мирe насекомых.</div>
+
+        <div class="grid">
           <div class="card">
-            <img alt="Morpho menelaus" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Morpho_menelaus_male_dos_MHNT.jpg" style="width:100%;border-radius:8px;display:block">
-            <p style="font-size:13px;margin:8px 0 0 0;color:var(--muted)">Morpho menelaus — из коллекции MHNT, Тулуза</p>
+            <h4>Литературные темы</h4>
+            <ul>
+              <li>Память и её ненадёжность</li>
+              <li>Страстное эстетическое восприятие</li>
+              <li>Игра языка и мета-фикция</li>
+            </ul>
           </div>
           <div class="card">
-            <img alt="Morpho didius" src="https://upload.wikimedia.org/wikipedia/commons/8/81/Morpho_didius_MHNT_dos.jpg" style="width:100%;border-radius:8px;display:block">
-            <p style="font-size:13px;margin:8px 0 0 0;color:var(--muted)">Morpho didius — крупное тропическое крыло</p>
-          </div>
-          <div class="card">
-            <img alt="Morpho peleides" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Morpho_peleides_male_dos_MHNT.jpg" style="width:100%;border-radius:8px;display:block">
-            <p style="font-size:13px;margin:8px 0 0 0;color:var(--muted)">Morpho peleides — яркий сине-зелёный оттенок</p>
+            <h4>Научные интересы</h4>
+            <p>Коллекционирование бабочек, описание видов, каталоги — Набоков долго работал над систематикой, поддерживал переписку с музеями и энтомологами.</p>
           </div>
         </div>
       </section>
+
+      <section class="section" aria-labelledby="worksTitle">
+        <h3 id="worksTitle">Ключевые произведения</h3>
+        <ol>
+          <li><strong>«Лолита» (1955)</strong> — одна из самых спорных и одновременно литературно выдающихся книг XX века.</li>
+          <li><strong>«Защита Лужина» (1930)</strong> — роман о шахматном гении и хрупкости сознания.</li>
+          <li><strong>«Ада» (1969)</strong> — монументальный роман-лабиринт, демонстрирующий мастерство форм и стиля.</li>
+        </ol>
+
+        <p>В тексте Набокова часто встречаются крошечные научные детали — названия бабочек, точные описания цвета — что создаёт эффект этнографической точности и интимности.</p>
+      </section>
+
+      <section class="section" aria-labelledby="styleTitle">
+        <h3 id="styleTitle">Художественный стиль и язык</h3>
+        <p>Набоков — мастер словесной фактуры: метаповествования, прагматичные описания и музыкальные фразы. Его стиль опирается на:</p>
+        <ul>
+          <li>Игру с многозначностью и каламбурами</li>
+          <li>Плотные, детализированные описания</li>
+          <li>Язык как инструмент для создания визуальных и тактильных образов</li>
+        </ul>
+
+        <div class="card">
+          <h4>Практический элемент</h4>
+          <p>Ниже кнопка читает вслух короткий отрывок с помощью Web Speech API — демонстрация того, как звучит текст Набокова на английском (или русском, если включить).</p>
+          <div style="margin-top:8px">
+            <button class="btn" id="speakEn">Прочитать (англ.)</button>
+            <button class="btn secondary" id="speakRu">Прочитать (рус.)</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="galleryTitle">
+        <h3 id="galleryTitle">Галерея — бабочки и архив</h3>
+        <p>Ниже — стилизованная галерея-эскиз: цвета и формы вдохновлены коллекциями и книжными переплётами Латинской Америки (бархат, терракот, богатая патина).</p>
+        <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card"><img alt="Эскиз бабочки" src="https://via.placeholder.com/300x180/DE6B59/fff?text=Morpho+idea" style="width:100%;border-radius:8px;display:block"><p style="font-size:13px;margin:8px 0 0 0;color:var(--muted)">Пример морфо — стилизованное изображение</p></div>
+          <div class="card"><img alt="Архив" src="https://via.placeholder.com/300x180/2B6F5A/fff?text=Archive" style="width:100%;border-radius:8px;display:block"><p style="font-size:13px;margin:8px 0 0 0;color:var(--muted)">Фрагменты писем и метки коллекций</p></div>
+          <div class="card"><img alt="Переплет" src="https://via.placeholder.com/300x180/C86B4A/fff?text=Binding" style="width:100%;border-radius:8px;display:block"><p style="font-size:13px;margin:8px 0 0 0;color:var(--muted)">Текстуры переплёта — вдохновение</p></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="notesTitle">
+        <h3 id="notesTitle">Дополнительные заметки</h3>
+        <p>Если вы готовите статью или карточку для выставки — стоит подчеркнуть дуализм: научная точность в описании природы и полная изобретательность в создании вымышленного психологического мира персонажей.</p>
+
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+          <button class="btn" id="moreBtn">Подробнее (биография)</button>
+          <button class="btn secondary" id="citeBtn">Сгенерировать цитирование</button>
+        </div>
+      </section>
+
     </main>
   </div>
+
+  <!-- Модальное окно -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="panel">
+      <h3 id="modalTitle">Галерея и коллекция</h3>
+      <p>Здесь можно поместить высококачественные изображения, архивы писем, или каталог бабочек. Пока — пример текстовой подсказки о коллекции Набокова и советы по выставке.</p>
+      <p style="color:var(--muted)">Совет: комбинируйте натуральные ткани, тёплые лампы и витрины с тёмными бархатными фонами — это усилит ощущение латинской роскоши и редкости экспонатов.</p>
+      <div style="margin-top:12px;text-align:right"><button class="btn secondary" id="closeModal">Закрыть</button></div>
+    </div>
+  </div>
+
+  <script>
+    // Управление модальным окном
+    const galleryBtn = document.getElementById('galleryBtn');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    galleryBtn.addEventListener('click', ()=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); });
+    closeModal.addEventListener('click', ()=>{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); });
+
+    // Чтение отрывка (SpeechSynthesis) — демонстрация без внешних файлов
+    const readBtn = document.getElementById('readBtn');
+    const speakEn = document.getElementById('speakEn');
+    const speakRu = document.getElementById('speakRu');
+
+    const excerptEn = `Vladimir Nabokov's prose moves like a delicate wing — precise, quick, and luminous. He treats memory as a fine fabric to be embroidered.`;
+    const excerptRu = `Владимир Набоков создаёт прозу, точную как коллекция: каждый оттенок, каждая пауза важны — как будто текст сам наблюдает за собой.`;
+
+    function speak(text, lang='en-US'){
+      if(!('speechSynthesis' in window)){ alert('Ваш браузер не поддерживает Web Speech API.'); return; }
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      u.rate = 0.95; u.pitch = 1.02;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+    }
+
+    readBtn.addEventListener('click', ()=> speak(excerptEn,'en-US'));
+    speakEn.addEventListener('click', ()=> speak(excerptEn,'en-US'));
+    speakRu.addEventListener('click', ()=> speak(excerptRu,'ru-RU'));
+
+    // Тёмная тема
+    const themeToggle = document.getElementById('themeToggle');
+    let dark=false;
+    themeToggle.addEventListener('click', ()=>{
+      dark = !dark;
+      document.documentElement.classList.toggle('theme-dark', dark);
+      themeToggle.textContent = dark ? 'Светлая тема' : 'Тёмная тема';
+    });
+
+    // Копирование ссылки (имитация)
+    const copyBtn = document.getElementById('copyBtn');
+    copyBtn.addEventListener('click', ()=>{
+      const dummy = 'https://example.org/nabokov-page';
+      navigator.clipboard?.writeText(dummy).then(()=>{
+        copyBtn.textContent = 'Скопировано!';
+        setTimeout(()=> copyBtn.textContent='Скопировать ссылку',1200);
+      }).catch(()=>{ alert('Не удалось скопировать.'); });
+    });
+
+    // Генерация цитирования (простая имитация)
+    const citeBtn = document.getElementById('citeBtn');
+    citeBtn.addEventListener('click', ()=>{
+      const citation = `Набоков, В. (1955). Лолита. Пер. и изд. — пример цитирования.`;
+      navigator.clipboard?.writeText(citation).then(()=>{ citeBtn.textContent='Цитация в буфере'; setTimeout(()=> citeBtn.textContent='Сгенерировать цитирование',1400); });
+    });
+
+    // Подробнее — раскрыть расширенную биографию в модале
+    const moreBtn = document.getElementById('moreBtn');
+    moreBtn.addEventListener('click', ()=>{
+      modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+      document.getElementById('modalTitle').textContent = 'Развернутая биография';
+      modal.querySelector('.panel p').textContent = 'Набоков жил в Петербурге, окресностях Европы и США; работал над научными каталогами бабочек, одновременно создавая кубистские структуры в прозе и играя с переводами. Его подход — сочетание академической дисциплины и художественной роскоши.';
+    });
+
+    // Простая инициализация: аккуратный фокус
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); } });
+
+  </script>
 </body>
 </html>
